@@ -1,7 +1,6 @@
 package uk.ac.ed.inf.megamodelbuild.test.build;
 
 import static uk.ac.ed.inf.megamodelbuild.test.build.MegamodelBuildTest.Tool.MODEL;
-import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
 import static uk.ac.ed.inf.megamodelbuild.test.build.MegamodelBuildTest.Tool.CODE;
 import static uk.ac.ed.inf.megamodelbuild.test.build.MegamodelBuildTest.Tool.TEST;
 import static org.junit.Assert.assertArrayEquals;
@@ -13,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
-import org.sugarj.common.FileCommands;
 
 import build.pluto.BuildUnit;
 import build.pluto.builder.BuildManagers;
@@ -21,17 +19,15 @@ import build.pluto.builder.BuildRequest;
 import build.pluto.builder.Builder;
 import build.pluto.builder.factory.BuilderFactory;
 import build.pluto.output.Output;
-import build.pluto.output.OutputPersisted;
 import build.pluto.test.build.ScopedBuildTest;
 import build.pluto.test.build.ScopedPath;
 import build.pluto.util.IReporting;
 import build.pluto.util.LogReporting;
-import build.pluto.util.IReporting.BuildReason;
 import uk.ac.ed.inf.megamodelbuild.bxexample.CodeBuilder;
 import uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder;
 import uk.ac.ed.inf.megamodelbuild.bxexample.TestBuilder;
-import uk.ac.ed.inf.megamodelbuild.test.build.MegamodelBuildTest.Tool;
 
+import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
 
 public class MegamodelBuildTest extends ScopedBuildTest {
 

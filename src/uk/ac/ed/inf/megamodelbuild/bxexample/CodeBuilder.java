@@ -13,7 +13,6 @@ import build.pluto.output.OutputPersisted;
 import build.pluto.stamp.LastModifiedStamper;
 import build.pluto.stamp.Stamper;
 import uk.ac.ed.inf.megamodelbuild.MegaException;
-import uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
 
 //this lets us write Input instead of ModelBuilder.Input:
 import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;

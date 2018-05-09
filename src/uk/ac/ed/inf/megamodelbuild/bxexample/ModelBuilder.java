@@ -1,7 +1,5 @@
 package uk.ac.ed.inf.megamodelbuild.bxexample;
 
-import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -13,7 +11,6 @@ import build.pluto.builder.factory.BuilderFactory;
 import build.pluto.builder.factory.BuilderFactoryFactory;
 import build.pluto.output.Out;
 import build.pluto.output.OutputPersisted;
-import build.pluto.stamp.FileHashStamper;
 import build.pluto.stamp.LastModifiedStamper;
 import build.pluto.stamp.Stamper;
 import uk.ac.ed.inf.megamodelbuild.MegaException;

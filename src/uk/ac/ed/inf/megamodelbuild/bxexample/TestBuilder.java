@@ -1,7 +1,5 @@
 package uk.ac.ed.inf.megamodelbuild.bxexample;
 
-import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -15,6 +13,8 @@ import build.pluto.output.OutputPersisted;
 import build.pluto.stamp.LastModifiedStamper;
 import build.pluto.stamp.Stamper;
 import uk.ac.ed.inf.megamodelbuild.MegaException;
+
+import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
 
 public class TestBuilder extends Builder<Input, Out<File>> {
 
