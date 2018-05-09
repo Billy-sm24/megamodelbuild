@@ -1,6 +1,7 @@
-package uk.ac.ed.inf.megamodelbuild;
+package uk.ac.ed.inf.megamodelbuild.bxexample;
 
 import build.pluto.stamp.Stamper;
+import uk.ac.ed.inf.megamodelbuild.OrientationStamper;
 
 public class ModelOrientationStamper extends OrientationStamper implements Stamper {
 

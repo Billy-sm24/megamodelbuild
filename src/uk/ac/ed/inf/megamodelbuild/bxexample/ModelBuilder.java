@@ -1,4 +1,6 @@
-package uk.ac.ed.inf.megamodelbuild;
+package uk.ac.ed.inf.megamodelbuild.bxexample;
+
+import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,9 +16,7 @@ import build.pluto.output.OutputPersisted;
 import build.pluto.stamp.FileHashStamper;
 import build.pluto.stamp.LastModifiedStamper;
 import build.pluto.stamp.Stamper;
-
-//this lets us write Input instead of ModelBuilder.Input:
-import static uk.ac.ed.inf.megamodelbuild.ModelBuilder.Input;
+import uk.ac.ed.inf.megamodelbuild.MegaException;
 
 public class ModelBuilder extends Builder<ModelBuilder.Input, Out<File>> {
 

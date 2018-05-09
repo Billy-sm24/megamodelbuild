@@ -1,10 +1,9 @@
 package uk.ac.ed.inf.megamodelbuild.test.build;
 
 import static uk.ac.ed.inf.megamodelbuild.test.build.MegamodelBuildTest.Tool.MODEL;
+import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
 import static uk.ac.ed.inf.megamodelbuild.test.build.MegamodelBuildTest.Tool.CODE;
 import static uk.ac.ed.inf.megamodelbuild.test.build.MegamodelBuildTest.Tool.TEST;
-import static uk.ac.ed.inf.megamodelbuild.ModelBuilder.Input;
-
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -28,9 +27,9 @@ import build.pluto.test.build.ScopedPath;
 import build.pluto.util.IReporting;
 import build.pluto.util.LogReporting;
 import build.pluto.util.IReporting.BuildReason;
-import uk.ac.ed.inf.megamodelbuild.ModelBuilder;
-import uk.ac.ed.inf.megamodelbuild.CodeBuilder;
-import uk.ac.ed.inf.megamodelbuild.TestBuilder;
+import uk.ac.ed.inf.megamodelbuild.bxexample.CodeBuilder;
+import uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder;
+import uk.ac.ed.inf.megamodelbuild.bxexample.TestBuilder;
 import uk.ac.ed.inf.megamodelbuild.test.build.MegamodelBuildTest.Tool;
 
 
