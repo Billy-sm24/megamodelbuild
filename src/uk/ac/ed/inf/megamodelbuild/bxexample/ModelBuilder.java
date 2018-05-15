@@ -2,50 +2,24 @@ package uk.ac.ed.inf.megamodelbuild.bxexample;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 
 import org.sugarj.common.FileCommands;
 
-import build.pluto.builder.Builder;
 import build.pluto.builder.factory.BuilderFactory;
 import build.pluto.builder.factory.BuilderFactoryFactory;
 import build.pluto.output.Out;
 import build.pluto.output.OutputPersisted;
-import build.pluto.stamp.LastModifiedStamper;
-import build.pluto.stamp.Stamper;
+import uk.ac.ed.inf.megamodelbuild.MegaBuilder;
 import uk.ac.ed.inf.megamodelbuild.MegaException;
 
-public class ModelBuilder extends Builder<ModelBuilder.Input, Out<File>> {
+public class ModelBuilder extends MegaBuilder {
 
   public static BuilderFactory<Input, Out<File>, ModelBuilder> factory = BuilderFactoryFactory.of(ModelBuilder.class, Input.class);
  
-  public static class Input implements Serializable {
-    public final File dir;
-
-    // argument must not be null
-    public Input(File dir) {
-      this.dir = dir;
-    }
-
-  }
-
+  public String getName() { return "model"; }
+  
   public ModelBuilder(Input input) {
     super(input);
-  }
-
-  @Override
-  protected String description(Input input) {
-    return "Build model";
-  }
-
-  @Override
-  public File persistentPath(Input input) {
-    return new File(input.dir, "model.dep");
-  }
-
-  @Override
-  protected Stamper defaultStamper() {
-    return LastModifiedStamper.instance;
   }
 
   @Override

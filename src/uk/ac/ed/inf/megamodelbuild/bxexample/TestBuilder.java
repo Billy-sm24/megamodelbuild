@@ -5,38 +5,21 @@ import java.io.IOException;
 
 import org.sugarj.common.FileCommands;
 
-import build.pluto.builder.Builder;
 import build.pluto.builder.factory.BuilderFactory;
 import build.pluto.builder.factory.BuilderFactoryFactory;
 import build.pluto.output.Out;
 import build.pluto.output.OutputPersisted;
-import build.pluto.stamp.LastModifiedStamper;
-import build.pluto.stamp.Stamper;
+import uk.ac.ed.inf.megamodelbuild.MegaBuilder;
 import uk.ac.ed.inf.megamodelbuild.MegaException;
 
-import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
-
-public class TestBuilder extends Builder<Input, Out<File>> {
+public class TestBuilder extends MegaBuilder {
 
   public static BuilderFactory<Input, Out<File>, TestBuilder> factory = BuilderFactoryFactory.of(TestBuilder.class, Input.class);
+  
+  public String getName() { return "test"; }
 
   public TestBuilder(Input input) {
     super(input);
-  }
-
-  @Override
-  protected String description(Input input) {
-    return "Build test suite";
-  }
-
-  @Override
-  public File persistentPath(Input input) {
-    return new File(input.dir, "test.dep");
-  }
-
-  @Override
-  protected Stamper defaultStamper() {
-    return LastModifiedStamper.instance;
   }
 
   @Override

@@ -12,32 +12,17 @@ import build.pluto.output.Out;
 import build.pluto.output.OutputPersisted;
 import build.pluto.stamp.LastModifiedStamper;
 import build.pluto.stamp.Stamper;
+import uk.ac.ed.inf.megamodelbuild.MegaBuilder;
 import uk.ac.ed.inf.megamodelbuild.MegaException;
 
-//this lets us write Input instead of ModelBuilder.Input:
-import static uk.ac.ed.inf.megamodelbuild.bxexample.ModelBuilder.Input;
-
-public class CodeBuilder extends Builder<Input, Out<File>> {
+public class CodeBuilder extends MegaBuilder {
 
   public static BuilderFactory<Input, Out<File>, CodeBuilder> factory = BuilderFactoryFactory.of(CodeBuilder.class, Input.class);
 
+  public String getName() { return "code"; }
+  
   public CodeBuilder(Input input) {
     super(input);
-  }
-
-  @Override
-  protected String description(Input input) {
-    return "Build code";
-  }
-
-  @Override
-  public File persistentPath(Input input) {
-    return new File(input.dir, "code.dep");
-  }
-
-  @Override
-  protected Stamper defaultStamper() {
-    return LastModifiedStamper.instance;
   }
 
   @Override
