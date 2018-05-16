@@ -51,8 +51,8 @@ public class MegamodelBuildTest extends ScopedBuildTest {
  @ScopedPath("orientation.txt")
  private File orientationFile;
  
-//created anew by each build request, examined by assertOrder. Will work just fine 
-// till we start running tests in parallel and then break horribly...
+//created anew by each doBuild, examined by assertOrder. Will work just fine 
+// till we start running tests in parallel and then break horribly, I fear...
  private List<BuilderFactory<?, ?, ?>> executed;
  
   protected static enum Tool {
@@ -61,8 +61,9 @@ public class MegamodelBuildTest extends ScopedBuildTest {
     TEST
   }
 
+  // Pre: there must always be a doBuild before an assertOrder, so executed will not be null.
+  // Check that the order in which the builders were executed in response to that doBuild is as specified in order
   private void assertOrder(Tool... order) {
-    if (null == executed) return; // Temporary!
     Tool[] executedTools = new Tool[executed.size()];
     for (int i = 0; i < executedTools.length; i++)
       if (executed.get(i) == ModelBuilder.factory)
@@ -84,8 +85,8 @@ public class MegamodelBuildTest extends ScopedBuildTest {
   private void doBuild(Tool tool) {
     Input i = new Input(dir);
     executed = new ArrayList<>();
-    // this anonymous inner class is to extend the standard logging with some info about which builders
-    // were invoked in what order. There must be a better way, mind, but this is how the latex example does it.
+    // this anonymous inner class is to extend the standard logging with info about which builders
+    // were invoked in what order. This is how the latex example does it, but TODO think about better way.
     IReporting reporting = new LogReporting() {
       @Override
       public <O extends Output> 

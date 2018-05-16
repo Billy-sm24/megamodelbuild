@@ -30,7 +30,7 @@ public class TestBuilder extends MegaBuilder {
     require(orientationModel, TestOrientationStamper.instance);
     String orientationInfo = TestOrientationStamper.instance.stampOf(orientationModel).val;
     if (null == orientationInfo) {
-      String error = "No line found for model in orientation model!";
+      String error = "No line found for "+getName()+" in orientation model!";
       reportError(error);
       throw new MegaException(error);
     }
@@ -58,6 +58,7 @@ public class TestBuilder extends MegaBuilder {
       newContent += FileCommands.readFileAsString(code);
       newContent += "\n Current version of safety, i.e.\n";
       newContent += FileCommands.readFileAsString(safety);
+      report ("Writing new "+getName()+" to file");
       FileCommands.writeToFile(test, newContent);
     }
     // more boilerplate:

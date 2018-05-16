@@ -30,7 +30,7 @@ public class ModelBuilder extends MegaBuilder {
     require(orientationModel, ModelOrientationStamper.instance);
     String orientationInfo = ModelOrientationStamper.instance.stampOf(orientationModel).val;
     if (null == orientationInfo) {
-      String error = "No line found for model in orientation model!";
+      String error = "No line found for "+getName()+" in orientation model!";
       reportError(error);
       throw new MegaException(error);
     }
@@ -39,7 +39,7 @@ public class ModelBuilder extends MegaBuilder {
     boolean isAuthoritative = (orientationInfoPieces[0].equals("y")); 
     if (isAuthoritative) {
       // do nothing
-      report ("Model is authoritative, so no resolution to be done");
+      report (getName()+" is authoritative, so no resolution to be done");
     } else {
    // other pieces in the stamp are identifiers for the megamodel edges that have been oriented to point here
       // the megamodel should let us use those identifiers to find out which models are sources for those edges
@@ -93,6 +93,7 @@ public class ModelBuilder extends MegaBuilder {
           newContent += "\nWe had to restore consistency along both edges: consider it done.\n";
         }
       }
+      report ("Writing new "+getName()+" to file");
       FileCommands.writeToFile(model, newContent);
     }
     // more boilerplate:
