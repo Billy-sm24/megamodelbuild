@@ -3,6 +3,6 @@
 # Rest of line is space-separated entries. The first is y or n for whether this model is authoritative.
 # The rest are identifiers for the (hyper)edges that have this model as target, for looking up in megamodel.
 # This one is Figure 6a
-Code: n safeConforms roundtripConforms 
-Model: y
-Test: y
+code n safeConforms roundtripConforms 
+model y
+test y

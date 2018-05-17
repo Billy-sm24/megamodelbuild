@@ -12,5 +12,5 @@ public class ModelOrientationStamper extends OrientationStamper implements Stamp
   private ModelOrientationStamper() { }
   private Object readResolve() throws ObjectStreamException { return instance; }
   
-  protected String getPrefix() {return "Model:";}
+  protected String getPrefix() {return "model";}
 }
