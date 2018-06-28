@@ -20,7 +20,7 @@ public abstract class MegaBuilder extends Builder<MegaBuilder.Input, Out<File>> 
   protected abstract String getName();
   protected abstract String getFileName();
   protected abstract OrientationStamper getOrientationStamper();
-  protected abstract void restoreConsistency(Input input, File code, String orientationInfo) throws IOException;
+  protected abstract void restoreConsistency(Input input, File code, String orientationInfo) throws MegaException, IOException;
   
   public static class Input implements Serializable {
     public final File dir;

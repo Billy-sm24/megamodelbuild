@@ -1,0 +1,8 @@
+# Placeholder syntax for an orientation model! 
+# Each model in the megamodel has a unique line, identified by its prefix
+# Rest of line is space-separated entries. The first is y or n for whether this model is authoritative.
+# The rest are identifiers for the (hyper)edges that have this model as target, for looking up in megamodel.
+# This one is Figure 3b (and some tests will splat it onto orientation.txt)
+m1 y
+m2 n patch
+delta y 
