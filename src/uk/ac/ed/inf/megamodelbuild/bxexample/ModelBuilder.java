@@ -68,9 +68,7 @@ public class ModelBuilder extends MegaBuilder {
     if (needCode) {
       Out<File> codeFileWrapper = requireBuild(CodeBuilder.factory, input);
       code = codeFileWrapper.val();
-      require(code);// probably redundant, but I'm a little confused and it does
-                    // no harm
-
+      require(code);
     }
 
     String newContent = "";

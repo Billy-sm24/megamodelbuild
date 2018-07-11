@@ -1,7 +1,7 @@
 # Placeholder syntax for an orientation model! 
-# Each model in the megamodel has a unique line, identified by its prefix
+# Each (not always-authoritative) model in the megamodel has a unique line, identified by its prefix
 # Rest of line is space-separated entries. The first is y or n for whether this model is authoritative.
-# The rest are identifiers for the (hyper)edges that have this model as target, for looking up in megamodel.
+# The rest are identifiers for the (hyper)edges that have this model as target.
 # This one is Figure 6a
 code n safeConforms roundtripConforms 
 model y
