@@ -1,11 +1,14 @@
 
 # Megamodelbuild
 
+
+[![Build Status](https://travis-ci.com/PerditaStevens/megamodelbuild.svg?branch=master)](https://travis-ci.com/PerditaStevens/megamodelbuild)
+
 Project home page: http://homepages.inf.ed.ac.uk/perdita/MegamodelBuild 
 
 This project contains an early-stage demonstration of building on top of the pluto build system to enable sound, flexible and optimal building from megamodels. It demonstrates the examples from the paper 
 
-Towards Sound, Optimal and Flexible Building from Megamodels by me, Perdita Stevens, in MODELS'18,
+**Towards Sound, Optimal and Flexible Building from Megamodels** by me, **Perdita Stevens**, in *MODELS'18*,
 
 of which you can find a preprint via the project home page (http://homepages.inf.ed.ac.uk/perdita/MegamodelBuild). The July 2018 version of the project was accorded an Artefact Evaluated stamp and can be found as a zip at ReMoDD as http://remodd.org/node/582 ; the version currently at GitHub as https://github.com/PerditaStevens/megamodelbuild may be more recent.
 
@@ -21,9 +24,9 @@ The packages bxexample and uniexample implement the examples described in the MO
 
 ### The tests
 
-Two JUnit test classes in test, BxExampleTest and UniExampleTest, exercise the two examples, using data from testdata. Reading these test files is the best way to understand what is going on. A typical test invokes a builder of one of the models in the megamodel being built, and checks that the expected builders were invoked in the expected order (which depends on the current state of the orientation model and the related models).
+Two JUnit test classes in test, BxExampleTest and UniExampleTest, exercise the two examples, using data from testdata. Reading these test files is the best way to understand what is going on. A typical test invokes a builder of one of the models in the megamodel being built, and checks that the expected builders were invoked in the expected order (which depends on the current state of the orientation model and the related models). There is, so far, no automated checking that the resulting content of the models is as expected (this failing would indicate a bug in an individual builder, rather than in the megamodelbuild system), but each test works on a copy of the original models, which can be checked afterwards - e.g. the test testCode from the test file BxExampleTest leaves its models in testdata/BxExampleTest/testCode .
 
-The travis build passing stamp demonstrates that the tests pass; the test files can be run directly using maven (I'm using eclipse and typically right click pom.xml and select Run As -> Maven test) or individually by right clicking the test file and choosing Run as -> JUnit test.
+The travis build passing stamp that you should find above demonstrates that the tests pass; the test files can be run directly using maven (I'm using eclipse and typically right click pom.xml and select Run As -> Maven test) or individually by right clicking the test file and choosing Run as -> JUnit test. The console output is not all that helpful, unless something goes wrong, but it does include remarks on, for example, where a model is found to be authoritative and therefore no attempt to rebuild it is made.
 
 ### Dependencies
 
@@ -43,4 +46,3 @@ This project is licensed under the Apache 2.0 licence. (Not a very considered ch
 
 All the people thanked in the paper, plus the MODELS'18 Artefact Evaluation team (especially for being patient with me as a first-time submitter to an Artefact Evaluation process, and for suggesting additions to the documentation).
 
-[![Build Status](https://travis-ci.com/PerditaStevens/megamodelbuild.svg?branch=master)](https://travis-ci.com/PerditaStevens/megamodelbuild)
