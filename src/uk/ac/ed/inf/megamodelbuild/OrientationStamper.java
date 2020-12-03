@@ -11,17 +11,17 @@ package uk.ac.ed.inf.megamodelbuild;
 
 import build.pluto.stamp.Stamper;
 import build.pluto.stamp.ValueStamp;
+import uk.ac.ed.inf.megamodelbuild.MegaBuilder.Input;
+import uk.ac.ed.inf.megamodelbuild.orientationmodel.Model;
+import uk.ac.ed.inf.megamodelbuild.orientationmodel.OrientationModel;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import org.sugarj.common.FileCommands;
 
 public abstract class OrientationStamper implements Stamper {
 
   private static final long serialVersionUID = 8979181448258315667L;
 
-  protected abstract String getPrefix();
+  protected abstract String getModelName();
 
   /*
    * (non-Javadoc)
@@ -29,25 +29,11 @@ public abstract class OrientationStamper implements Stamper {
    * @see build.pluto.stamp.Stamper#stampOf(java.io.File)
    */
   @Override
-  public ValueStamp<String> stampOf(File p) {
-    String prefix = getPrefix();
-    String content;
-    try {
-      content = FileCommands.readFileAsString(p);
-    } catch (FileNotFoundException e) {
-      return new ValueStamp<>(this, null);
-    } catch (IOException e) {
-      e.printStackTrace();
-      return new ValueStamp<>(this, null);
-    }
-
-    for (String line : content.split("\n")) {
-      if (line.startsWith(prefix)) {
-        return new ValueStamp<>(this, line.substring(prefix.length()).trim());
-      }
-    }
-    return new ValueStamp<>(this, null);
-
+  public ValueStamp<Model> stampOf(File orientationFile) {
+    OrientationModel orientation = OrientationModel.getInstance(new Input(orientationFile));
+    Model model = orientation.getModel(getModelName());
+    
+    return new ValueStamp<>(this, model);
   }
 
 }

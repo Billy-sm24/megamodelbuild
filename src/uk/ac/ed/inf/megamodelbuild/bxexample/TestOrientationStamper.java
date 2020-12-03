@@ -11,6 +11,10 @@ public class TestOrientationStamper extends OrientationStamper implements Stampe
   private TestOrientationStamper() { }
   private Object readResolve() throws ObjectStreamException { return instance; }
   
-  protected String getPrefix() {return "test";}
+  @Override
+  protected String getModelName() {
+    return "test";
+  }
+
   
 }

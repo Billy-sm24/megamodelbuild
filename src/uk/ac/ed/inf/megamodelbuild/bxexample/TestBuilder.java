@@ -9,7 +9,9 @@ import build.pluto.builder.factory.BuilderFactory;
 import build.pluto.builder.factory.BuilderFactoryFactory;
 import build.pluto.output.Out;
 import uk.ac.ed.inf.megamodelbuild.MegaBuilder;
+import uk.ac.ed.inf.megamodelbuild.MegaException;
 import uk.ac.ed.inf.megamodelbuild.OrientationStamper;
+import uk.ac.ed.inf.megamodelbuild.orientationmodel.Model;
 
 public class TestBuilder extends MegaBuilder {
 
@@ -31,20 +33,16 @@ public class TestBuilder extends MegaBuilder {
     return TestOrientationStamper.instance;
   }
 
-  protected void restoreConsistency(Input input, File test, String orientationInfo) throws IOException {
-
-    // other pieces in the stamp are identifiers for the megamodel edges that
-    // have been oriented to point here
-    // the megamodel should let us use those identifiers to find out which
-    // models are sources for those edges
-    // so suppose it did: for now we hardcode the result.
+  @Override
+  protected void restoreConsistency(Input input, File test, Model orientationInfo) throws MegaException, IOException {
     File code = new File(input.dir, "Code.java");
     File safety = new File(input.dir, "Safety.txt");
     File sourceModels[] = { code, safety };
     for (File s : sourceModels) {
       require(s);
     }
-    // Here's where we actually have to do some work.
+    
+ // Here's where we actually have to do some work.
     // In real life we probably call an external transformation engine to update
     // tests for consistency with code and safety.
     // Let's pretend:
@@ -56,6 +54,9 @@ public class TestBuilder extends MegaBuilder {
     newContent += FileCommands.readFileAsString(safety);
     report("Writing new " + getName() + " to file");
     FileCommands.writeToFile(test, newContent);
+    
+    
+    
   }
 
 }

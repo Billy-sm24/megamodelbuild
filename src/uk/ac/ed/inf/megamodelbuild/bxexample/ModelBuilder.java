@@ -2,6 +2,7 @@ package uk.ac.ed.inf.megamodelbuild.bxexample;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.sugarj.common.FileCommands;
 
@@ -9,8 +10,10 @@ import build.pluto.builder.factory.BuilderFactory;
 import build.pluto.builder.factory.BuilderFactoryFactory;
 import build.pluto.output.Out;
 import uk.ac.ed.inf.megamodelbuild.MegaBuilder;
-import uk.ac.ed.inf.megamodelbuild.OrientationModel;
+import uk.ac.ed.inf.megamodelbuild.MegaException;
 import uk.ac.ed.inf.megamodelbuild.OrientationStamper;
+import uk.ac.ed.inf.megamodelbuild.orientationmodel.Edge;
+import uk.ac.ed.inf.megamodelbuild.orientationmodel.Model;
 
 public class ModelBuilder extends MegaBuilder {
 
@@ -32,9 +35,9 @@ public class ModelBuilder extends MegaBuilder {
     return ModelOrientationStamper.instance;
   }
 
-  protected void restoreConsistency(Input input, File model, String orientationInfo) throws IOException {
-
-    // other pieces in the stamp are identifiers for the megamodel edges that
+  @Override
+  protected void restoreConsistency(Input input, File model, Model orientationInfo) throws MegaException, IOException {
+ // other pieces in the stamp are identifiers for the megamodel edges that
     // have been oriented to point here
     // the megamodel should let us use those identifiers to find out which
     // models are sources for those edges
@@ -49,18 +52,19 @@ public class ModelBuilder extends MegaBuilder {
     boolean needCode = false;
     File metamodel = new File(input.dir, "MM.xmi");
     File code = new File(input.dir, "Code.java");
-
-    String[] relationsToRestore = OrientationModel.relationsToRestore(orientationInfo);
-    for (String s : relationsToRestore) {
-      if (s.equals("metamodelConforms")) {
+    
+    List<Edge> relationsToRestore = orientationInfo.getEdges();
+    for (Edge edge : relationsToRestore) {
+      if (edge.getName().equals("metamodelConforms")) {
         needToRestoreMetamodelConformance = true;
         needMetamodel = true;
       }
-      if (s.equals("roundtripConforms")) {
+      if (edge.getName().equals("roundtripConforms")) {
         needToRestoreRoundtrip = true;
         needCode = true;
       }
     }
+    
     if (needMetamodel) {
       require(metamodel); // no builder to require, because metamodel is
                           // always-authoritative

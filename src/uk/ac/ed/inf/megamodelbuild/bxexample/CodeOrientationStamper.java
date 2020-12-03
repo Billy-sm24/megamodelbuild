@@ -12,5 +12,5 @@ public class CodeOrientationStamper extends OrientationStamper implements Stampe
   private CodeOrientationStamper() { }
   private Object readResolve() throws ObjectStreamException { return instance; }
   
-  protected String getPrefix() {return "code";}
+  protected String getModelName() {return "code";}
 }

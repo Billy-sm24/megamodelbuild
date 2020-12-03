@@ -1,0 +1,11 @@
+Model code:
+	Authoritative: False
+	Edges:
+		Name: safeConforms
+		Name: roundtripConforms
+
+Model model:
+	Authoritative: True
+	
+Model test:
+	Authoritative: True
