@@ -39,10 +39,10 @@ public class UniExampleTest extends ScopedBuildTest {
  protected File dir;
  
 //and these at the local copies of the files we manipulate - may need when we want to compare file contents
-@ScopedPath("orientation.txt")
+@ScopedPath("orientation.orientation")
 private File orientationFile;
 
-@ScopedPath("orientation2.txt")
+@ScopedPath("orientation2.orientation")
 private File orientation2File;
 
  protected static enum Tool {

@@ -12,5 +12,7 @@ public class M2OrientationStamper extends OrientationStamper implements Stamper 
   private M2OrientationStamper() { }
   private Object readResolve() throws ObjectStreamException { return instance; }
   
-  protected String getPrefix() {return "m2";}
+  @Override
+  protected String getModelName() {return "m2";}
+
 }

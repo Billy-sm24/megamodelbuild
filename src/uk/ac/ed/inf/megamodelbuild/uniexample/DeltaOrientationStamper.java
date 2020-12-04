@@ -12,5 +12,6 @@ public class DeltaOrientationStamper extends OrientationStamper implements Stamp
   private DeltaOrientationStamper() { }
   private Object readResolve() throws ObjectStreamException { return instance; }
   
-  protected String getPrefix() {return "delta";}
+  @Override
+  protected String getModelName() {return "delta";}
 }

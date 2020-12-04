@@ -25,9 +25,8 @@ public class OrientationModel {
   }
   
   public static OrientationModel getInstance(Input orientationPath) {
-    if (instance == null) {
-      instance = new OrientationModel(orientationPath);
-    } 
+    // TODO Only parse again if the model has changed.
+    instance = new OrientationModel(orientationPath);
     return instance;
   }
   

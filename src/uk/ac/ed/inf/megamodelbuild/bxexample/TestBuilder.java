@@ -42,7 +42,7 @@ public class TestBuilder extends MegaBuilder {
       require(s);
     }
     
- // Here's where we actually have to do some work.
+    // Here's where we actually have to do some work.
     // In real life we probably call an external transformation engine to update
     // tests for consistency with code and safety.
     // Let's pretend:

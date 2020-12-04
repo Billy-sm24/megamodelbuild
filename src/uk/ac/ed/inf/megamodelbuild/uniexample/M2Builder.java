@@ -10,8 +10,8 @@ import build.pluto.builder.factory.BuilderFactoryFactory;
 import build.pluto.output.Out;
 import uk.ac.ed.inf.megamodelbuild.MegaBuilder;
 import uk.ac.ed.inf.megamodelbuild.MegaException;
-import uk.ac.ed.inf.megamodelbuild.OrientationModel;
 import uk.ac.ed.inf.megamodelbuild.OrientationStamper;
+import uk.ac.ed.inf.megamodelbuild.orientationmodel.Model;
 
 public class M2Builder extends MegaBuilder {
 
@@ -33,7 +33,7 @@ public class M2Builder extends MegaBuilder {
     return M2OrientationStamper.instance;
   }
 
-  protected void restoreConsistency(Input input, File code, String orientationInfo) throws IOException, MegaException {
+  protected void restoreConsistency(Input input, File code, Model orientationInfo) throws IOException, MegaException {
     // This particular case is so simple there's only one thing we could have to do, but let's be
     // formulaic, towards more generation.
     boolean needToRestoreCompare = false;
@@ -43,19 +43,17 @@ public class M2Builder extends MegaBuilder {
     File m1 = new File(input.dir, "Model1.txt");
     File delta = new File(input.dir, "Delta.txt");
 
-    String[] relationsToRestore = OrientationModel.relationsToRestore(orientationInfo);
-    for (String s : relationsToRestore) {
-      if (s.equals("compare")) {
-        needToRestoreCompare = true;
-        needM1 = true;
-        needDelta = true;
-      }
-      if (s.equals("patch")) {
-        needToRestorePatch = true;
-        needM1 = true;
-        needDelta = true;
-      }
+    if (orientationInfo.edgeNeedsRestoring("compare")) {
+      needToRestoreCompare = true;
+      needM1 = true;
+      needDelta = true;
     }
+    if (orientationInfo.edgeNeedsRestoring("patch")) {
+      needToRestorePatch = true;
+      needM1 = true;
+      needDelta = true;
+    }
+
     if (needM1) { // always-authoritative, so no builder
       require(m1);
     }

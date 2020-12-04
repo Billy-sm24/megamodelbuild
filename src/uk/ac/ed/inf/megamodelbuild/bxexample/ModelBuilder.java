@@ -2,7 +2,6 @@ package uk.ac.ed.inf.megamodelbuild.bxexample;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.sugarj.common.FileCommands;
 
@@ -12,7 +11,6 @@ import build.pluto.output.Out;
 import uk.ac.ed.inf.megamodelbuild.MegaBuilder;
 import uk.ac.ed.inf.megamodelbuild.MegaException;
 import uk.ac.ed.inf.megamodelbuild.OrientationStamper;
-import uk.ac.ed.inf.megamodelbuild.orientationmodel.Edge;
 import uk.ac.ed.inf.megamodelbuild.orientationmodel.Model;
 
 public class ModelBuilder extends MegaBuilder {
@@ -53,16 +51,13 @@ public class ModelBuilder extends MegaBuilder {
     File metamodel = new File(input.dir, "MM.xmi");
     File code = new File(input.dir, "Code.java");
     
-    List<Edge> relationsToRestore = orientationInfo.getEdges();
-    for (Edge edge : relationsToRestore) {
-      if (edge.getName().equals("metamodelConforms")) {
-        needToRestoreMetamodelConformance = true;
-        needMetamodel = true;
-      }
-      if (edge.getName().equals("roundtripConforms")) {
-        needToRestoreRoundtrip = true;
-        needCode = true;
-      }
+    if (orientationInfo.edgeNeedsRestoring("metamodelConforms")) {
+      needToRestoreMetamodelConformance = true;
+      needMetamodel = true;
+    }
+    if (orientationInfo.edgeNeedsRestoring("roundtripConforms")) {
+      needToRestoreRoundtrip = true;
+      needCode = true;
     }
     
     if (needMetamodel) {

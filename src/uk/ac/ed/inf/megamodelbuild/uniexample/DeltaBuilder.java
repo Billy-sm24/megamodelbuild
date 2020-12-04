@@ -8,9 +8,9 @@ import org.sugarj.common.FileCommands;
 import build.pluto.builder.factory.BuilderFactory;
 import build.pluto.builder.factory.BuilderFactoryFactory;
 import build.pluto.output.Out;
+import uk.ac.ed.inf.megamodelbuild.orientationmodel.Model;
 import uk.ac.ed.inf.megamodelbuild.MegaBuilder;
 import uk.ac.ed.inf.megamodelbuild.MegaException;
-import uk.ac.ed.inf.megamodelbuild.OrientationModel;
 import uk.ac.ed.inf.megamodelbuild.OrientationStamper;
 
 public class DeltaBuilder extends MegaBuilder {
@@ -33,27 +33,25 @@ public class DeltaBuilder extends MegaBuilder {
     return DeltaOrientationStamper.instance;
   }
 
-  protected void restoreConsistency(Input input, File model, String orientationInfo) throws MegaException, IOException {
+  protected void restoreConsistency(Input input, File model, Model orientationInfo) throws MegaException, IOException {
     boolean needToRestoreCompare = false;
     boolean needToRestorePatch = false;
     boolean needM1 = false;
     boolean needM2 = false;
     File m1 = new File(input.dir, "Model1.txt");
     File m2 = new File(input.dir, "Model2.txt");
-
-    String[] relationsToRestore = OrientationModel.relationsToRestore(orientationInfo);
-    for (String s : relationsToRestore) {
-      if (s.equals("compare")) {
-        needToRestoreCompare = true;
-        needM1 = true;
-        needM2 = true;
-      }
-      if (s.equals("patch")) {
-        needToRestorePatch = true;
-        needM1 = true;
-        needM2 = true;
-      }
+    
+    if (orientationInfo.edgeNeedsRestoring("compare")) {
+      needToRestoreCompare = true;
+      needM1 = true;
+      needM2 = true;
     }
+    if (orientationInfo.edgeNeedsRestoring("patch")) {
+      needToRestorePatch = true;
+      needM1 = true;
+      needM2 = true;
+    }
+
     if (needM1) { // always-authoritative, so no builder
       require(m1); 
     }

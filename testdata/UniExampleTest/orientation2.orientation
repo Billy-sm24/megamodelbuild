@@ -1,0 +1,10 @@
+Model m1:
+	Authoritative: True
+
+Model m2:
+	Authoritative: False
+	Edges:
+		Name: patch
+
+Model delta:
+	Authoritative: True
