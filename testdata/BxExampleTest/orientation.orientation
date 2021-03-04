@@ -1,11 +1,18 @@
-Model code:
+Models:
+	Name: code
 	Authoritative: False
-	Edges:
-		Name: safeConforms
-		Name: roundtripConforms
-
-Model model:
+	
+	Name: model
 	Authoritative: True
 	
-Model test:
+	Name: test
 	Authoritative: True
+	
+Edges:
+	Name: safeConforms
+	Source: test
+	Target: code
+	
+	Name: roundtripConforms
+	Source: model
+	Target: code

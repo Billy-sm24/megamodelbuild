@@ -22,20 +22,18 @@ public class Model implements Serializable {
   
   private String name;
   private boolean authoritative;
-  private List<Edge> edges = new ArrayList<>();
+  private List<Edge> targetEdges = new ArrayList<>();
   
-  public Model(smith.billy.orientationmodel.orientationModel.Model rawModel) {
+  public Model(smith.billy.orientationmodel.orientationModel.Model rawModel,
+      List<Edge> edges) {
     this.name = rawModel.getName();
+    this.targetEdges = edges;
     
     if (rawModel.getAuthoritative().equals("True")) {
       this.authoritative = true;
     } else {
       this.authoritative = false;
-    }
-    
-    for (smith.billy.orientationmodel.orientationModel.Edge rawEdge : rawModel.getEdges()) {
-      edges.add(new Edge(rawEdge));
-    }
+    } 
   }
 
   public String getName() {
@@ -43,7 +41,7 @@ public class Model implements Serializable {
   }
   
   public List<Edge> getEdges() {
-    return edges;
+    return targetEdges;
   }
 
   public boolean isAuthoritative() {
@@ -51,7 +49,7 @@ public class Model implements Serializable {
   }
   
   public boolean edgeNeedsRestoring(String edgeName) {
-    for (Edge edge : edges) {
+    for (Edge edge : targetEdges) {
       if (edge.getName().equals(edgeName)) {
         return true;
       } 
@@ -75,7 +73,7 @@ public class Model implements Serializable {
     Model other = (Model) obj;
     return Objects.equals(name, other.getName()) && 
         Objects.equals(authoritative, other.isAuthoritative()) &&
-        edges.equals(other.getEdges());
+        targetEdges.equals(other.getEdges());
   }
 
 }

@@ -42,11 +42,13 @@ public class DeltaBuilder extends MegaBuilder {
     File m2 = new File(input.dir, "Model2.txt");
     
     if (orientationInfo.edgeNeedsRestoring("compare")) {
+      System.out.println("COMPARE NEEDS RESTORING!");
       needToRestoreCompare = true;
       needM1 = true;
       needM2 = true;
     }
     if (orientationInfo.edgeNeedsRestoring("patch")) {
+      System.out.println("PATCH NEEDS RESTORING!");
       needToRestorePatch = true;
       needM1 = true;
       needM2 = true;

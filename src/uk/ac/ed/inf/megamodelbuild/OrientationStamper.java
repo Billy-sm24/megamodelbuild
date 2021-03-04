@@ -30,7 +30,7 @@ public abstract class OrientationStamper implements Stamper {
    */
   @Override
   public ValueStamp<Model> stampOf(File orientationFile) {
-    OrientationModel orientation = OrientationModel.getInstance(new Input(orientationFile));
+    OrientationModel orientation = new OrientationModel(new Input(orientationFile));
     Model model = orientation.getModel(getModelName());
     
     return new ValueStamp<>(this, model);

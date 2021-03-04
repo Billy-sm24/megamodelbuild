@@ -1,10 +1,14 @@
-Model m1:
+Models:
+	Name: m1
 	Authoritative: True
-
-Model m2:
+	
+	Name: m2
 	Authoritative: False
-	Edges:
-		Name: patch
-
-Model delta:
+	
+	Name: delta
 	Authoritative: True
+	
+Edges: 
+	Name: patch
+	Source: delta
+	Target: m2

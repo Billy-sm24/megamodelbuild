@@ -1,8 +1,9 @@
-package uk.ac.ed.inf.megamodelbuild.orientationmodel;
+ package uk.ac.ed.inf.megamodelbuild.orientationmodel;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import uk.ac.ed.inf.megamodelbuild.MegaBuilder.Input;
 
@@ -13,20 +14,23 @@ import uk.ac.ed.inf.megamodelbuild.MegaBuilder.Input;
 public class OrientationModel {
   
   private static OrientationModel instance = null;
-  private final File orientationFile;
+  public File orientationFile;
   
   private HashMap<String, Model> models;
 
   // TODO should this be a singleton? For now, never mind, only immutable data!
   // TODO think about filenames in general. Where should they come from?
-  private OrientationModel(Input orientationPath) {
+  public OrientationModel(Input orientationPath) {
     models = OrientationParser.parse(orientationPath.dir.getPath());
     this.orientationFile = orientationPath.dir;
   }
   
+  // Without being a singleton, the tests fail.
   public static OrientationModel getInstance(Input orientationPath) {
-    // TODO Only parse again if the model has changed.
     instance = new OrientationModel(orientationPath);
+//    if (instance == null) {
+//      instance = new OrientationModel(orientationPath);
+//    } 
     return instance;
   }
   
@@ -53,8 +57,26 @@ public class OrientationModel {
     return false;
   }
   
-  private List<Edge> relationsToRestore(String modelName) {
+  public List<Edge> relationsToRestore(String modelName) {
     return models.get(modelName).getEdges();
+  }
+  
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == this) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!getClass().equals(obj.getClass())) {
+      return false;
+    }
+    
+    // Compare state.
+    OrientationModel other = (OrientationModel) obj;
+    return orientationFile.equals(other.orientationFile) &&
+        models.equals(other.models);
   }
   
 }

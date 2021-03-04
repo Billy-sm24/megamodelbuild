@@ -9,10 +9,12 @@ public class Edge implements Serializable {
   
   private String name;
   private String source;
+  private String target;
 
   public Edge(smith.billy.orientationmodel.orientationModel.Edge rawEdge) {
     this.name = rawEdge.getName();
-    this.source = rawEdge.getSource();
+    this.source = rawEdge.getSource().getName();
+    this.target = rawEdge.getTarget().getName();
   }
 
   public String getName() {
@@ -21,6 +23,10 @@ public class Edge implements Serializable {
 
   public String getSource() {
     return source;
+  }
+  
+  public String getTarget() {
+    return target;
   }
   
   @Override
@@ -37,6 +43,7 @@ public class Edge implements Serializable {
     
     Edge other = (Edge) obj;
     return Objects.equals(name, other.getName()) &&
-        Objects.equals(source, other.getSource());
+        Objects.equals(source, other.getSource()) &&
+        Objects.equals(target,  other.getTarget());
   }
 }

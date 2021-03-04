@@ -30,7 +30,6 @@ public abstract class MegaBuilder extends Builder<MegaBuilder.Input, Out<File>> 
     public Input(File dir) {
       this.dir = dir;
     }
-
   }
 
   @Override
@@ -51,7 +50,7 @@ public abstract class MegaBuilder extends Builder<MegaBuilder.Input, Out<File>> 
   @Override
   protected Out<File> build(Input input) throws IOException, MegaException {
     File file = new File(input.dir, getFileName());
-    OrientationModel orientationModel = OrientationModel.getInstance(input);
+    OrientationModel orientationModel = new OrientationModel(input);
     File om = orientationModel.getFile();
     require(om, getOrientationStamper());
     boolean isAuthoritative = orientationModel.isAuthoritative(getName());
